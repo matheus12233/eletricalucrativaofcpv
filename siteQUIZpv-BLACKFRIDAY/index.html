@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#ffffff">
 <title>Truque Elétrica Lucrativa | Avaliação personalizada</title>
 <meta name="description" content="Responda ao teste de 1 minuto e descubra o seu plano para começar na elétrica residencial, mesmo do zero.">
-<link rel="preload" as="image" href="img/intro-v2.webp" type="image/webp" fetchpriority="high">
+<link rel="preload" as="image" href="img/intro-v3.webp" type="image/webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&display=swap"></noscript>
 <style>
@@ -32,6 +32,9 @@ h1{margin:10px 0 8px;font-size:1.5rem;line-height:1.17;font-weight:900;text-alig
 .btn:disabled{opacity:.4;box-shadow:none}
 .pulse{animation:pls 1.8s ease-in-out infinite}
 @keyframes pls{0%,100%{transform:scale(1);box-shadow:0 10px 26px rgba(34,197,94,.35),0 0 0 0 rgba(34,197,94,.55)}50%{transform:scale(1.03);box-shadow:0 12px 30px rgba(34,197,94,.5),0 0 0 14px rgba(34,197,94,0)}}
+.go-pro{white-space:nowrap;overflow:hidden;padding-left:10px;padding-right:10px;letter-spacing:0;background:linear-gradient(180deg,#3dff7a,#00c853);color:#fff;font-size:1.08rem;text-shadow:0 1px 2px rgba(0,0,0,.35);border:2px solid #b9ffd0;animation:plsPro 1.1s ease-in-out infinite}
+@keyframes plsPro{0%,100%{transform:scale(1);box-shadow:0 10px 26px rgba(0,230,90,.5),0 0 0 0 rgba(61,255,122,.75)}50%{transform:scale(1.05);box-shadow:0 14px 36px rgba(0,230,90,.75),0 0 0 18px rgba(61,255,122,0)}}
+@media(prefers-reduced-motion:reduce){.go-pro{animation:none}}
 .warn{margin:16px 0 0;text-align:center;font-size:.9rem;line-height:1.45;color:var(--mu)}
 .warn b{color:#fff}.warn .at{color:var(--y)}
 .top{display:flex;align-items:center;gap:10px;padding:4px 0 14px}
@@ -138,10 +141,10 @@ h1,.sub,.q,.load h2,.box h2,.steps li b,.exp-t b,.exp-t u,.cmp .l b,.pf b,.warn 
 <section id="s-intro">
 <h1 id="intro-h" tabindex="-1">Descubra como alcançar <span class="hl">de R$&nbsp;8&nbsp;mil a R$&nbsp;13&nbsp;mil por mês</span> com a Elétrica Lucrativa!</h1>
 <p class="kick">É impossível não aprender elétrica do zero com o sistema da Elétrica Lucrativa!</p>
-<img class="photo" src="img/intro-v2.webp" alt="Eletricista instalando a fiação de um quadro de disjuntores" width="800" height="450" fetchpriority="high">
+<img class="photo" src="img/intro-v3.webp" alt="Eletricista instalando a fiação de um quadro de disjuntores" width="800" height="450" fetchpriority="high">
 <p class="sub">Descubra o sistema após responder o questionário de&nbsp;1&nbsp;minutinho</p>
 <ul class="chips"><li>⏱ Leva 1 minuto</li><li>🔒 100% gratuito</li><li>⚡ Resultado na hora</li></ul>
-<div class="stk"><button type="button" class="btn pulse" id="start">Responder teste gratuito</button></div>
+<div class="stk"><button type="button" class="btn pulse go-pro" id="start">Quero me tornar um eletricista profissional</button></div>
 <p class="warn"><b class="at">Atenção:</b> oferecemos apenas <b>um teste por pessoa.</b> Se você sair, perderá a sua vez. Aproveite essa oportunidade exclusiva!</p>
 </section>
 
@@ -357,5 +360,6 @@ back.addEventListener("click",goBack);
 track("view");
 })();
 </script>
+<script>(function(){var b=document.getElementById("start");if(!b)return;function f(){b.style.fontSize="";var z=parseFloat(getComputedStyle(b).fontSize);while(b.scrollWidth>b.clientWidth&&z>9){z-=.5;b.style.fontSize=z+"px"}}f();addEventListener("resize",f);if(document.fonts)document.fonts.ready.then(f)})();</script>
 </body>
 </html>
