@@ -460,7 +460,7 @@ summary::after{color:#b86e00}
 <span class="fita">OFERTA ESPECIAL POR TEMPO LIMITADO</span>
 <p class="tm-h" id="tm-h">⏳ OFERTA ESPECIAL BLACK FRIDAY: GARANTA AGORA!</p>
 <div class="tm" id="of-timer" role="timer" aria-live="off"><div><b id="tm-m">15</b><small>min</small></div><span>:</span><div><b id="tm-s">00</b><small>seg</small></div></div>
-<p class="tm-f" id="tm-f">Condição especial válida somente até 30/11/2026.</p>
+<p class="tm-f" id="tm-f">Esta condição especial permanece válida somente até o encerramento do temporizador.</p>
 <div class="ref"><span>De</span> <s id="of-ref">R$ 420,00</s></div>
 <div class="pbf" id="of-lbl">por apenas</div>
 <div class="preco" id="of-preco">R$ 47,90</div>
@@ -479,8 +479,7 @@ summary::after{color:#b86e00}
 <div class="back">
 <h3>💡 Seu investimento pode voltar já no primeiro serviço!</h3>
 <p class="big">Você pode recuperar os R$ 47,90 investidos já no seu primeiro serviço na área da elétrica!</p>
-<p style="margin-top:12px">R$ 47,90 é menos do que o preço de muitas ferramentas que você precisará comprar para trabalhar com elétrica.</p>
-<p>Com esse pequeno investimento, você terá acesso a um conteúdo completo para aprender elétrica residencial do zero e dar os primeiros passos para se tornar um profissional da área!</p>
+<p style="margin-top:12px">Com esse pequeno investimento, você terá acesso a um conteúdo completo para aprender elétrica residencial do zero e dar os primeiros passos para se tornar um profissional da área!</p>
 <ul>
 <li>Investimento de apenas <b>R$ 47,90</b></li>
 <li>Guia principal + <b>10 bônus</b></li>
@@ -602,7 +601,7 @@ function expirou(){
   el("tm-h").textContent="\u23F0 OFERTA ENCERRADA";el("tm-f").textContent="O prazo da condi\u00E7\u00E3o especial terminou.";
   if(LINK_APOS_EXPIRAR){el("of-btn").href=LINK_APOS_EXPIRAR}
  }else{
-  el("tm-f").textContent="Condi\u00E7\u00E3o especial Black Friday segue v\u00E1lida at\u00E9 30/11/2026.";
+  el("tm-f").textContent="O prazo do temporizador foi encerrado.";
  }
 }
 function tick(){
