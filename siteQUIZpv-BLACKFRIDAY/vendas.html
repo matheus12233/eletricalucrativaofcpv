@@ -569,7 +569,7 @@ document.addEventListener("click",function(ev){
 document.addEventListener("click",function(e){
   var a=e.target.closest&&e.target.closest('a[href*="checkout.payt.com.br"]');
   if(!a)return;
-  try{fbq("track","InitiateCheckout",{value:47.90,currency:"BRL",content_name:"Guia Elétrica Lucrativa"})}catch(x){}
+  try{fbq("track","InitiateCheckout",{value:parseFloat(a.getAttribute("data-valor"))||47.90,currency:"BRL",content_name:"Guia Elétrica Lucrativa"})}catch(x){}
 },true);
 </script>
 
@@ -612,5 +612,55 @@ function tick(){
 tick();if(!done){iv=setInterval(tick,1000);document.addEventListener("visibilitychange",tick)}
 })();
 </script>
+<div id="sx" class="sx" role="dialog" aria-modal="true" aria-labelledby="sx-t" hidden>
+<div class="sx-c">
+<button type="button" class="sx-x" id="sx-x" aria-label="Fechar">×</button>
+<p class="sx-k">⚠️ Espere! Antes de sair…</p>
+<h3 id="sx-t">Fiz uma promoção especial para você!</h3>
+<p class="sx-p">O <b>Elétrica Lucrativa</b> por apenas</p>
+<p class="sx-pr">R$ 27,90</p>
+<p class="sx-p2">Guia completo + 10 bônus exclusivos · Garantia de 30 dias</p>
+<a class="sx-b" id="sx-b" href="https://checkout.payt.com.br/ed74d49c9665998bf1b65456ea6443a2?payment=pix" data-valor="27.90">Quero aproveitar por R$ 27,90</a>
+<button type="button" class="sx-n" id="sx-n">Não, obrigado</button>
+</div>
+</div>
+<style>
+.sx{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.72);backdrop-filter:blur(3px)}
+.sx[hidden]{display:none}
+.sx-c{position:relative;width:100%;max-width:400px;padding:30px 22px 20px;border-radius:20px;background:#0d0f16;border:2px solid #ffc400;box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 40px rgba(255,196,0,.18);text-align:center;color:#fff;animation:sxIn .3s ease-out}
+@keyframes sxIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+.sx-x{position:absolute;top:8px;right:10px;width:36px;height:36px;border:0;background:none;color:#9aa3b8;font-size:1.7rem;line-height:1;cursor:pointer}
+.sx-k{margin:0 0 8px;color:#ffc400;font-weight:900;text-transform:uppercase;font-size:.85rem;letter-spacing:.03em}
+.sx-c h3{margin:0 0 12px;font-size:1.35rem;line-height:1.25;color:#fff}
+.sx-p{margin:0 0 18px;font-size:.98rem;line-height:1.5;color:#d6dcea}
+.sx-pr{margin:0 0 6px;font-size:2.9rem;font-weight:900;line-height:1;color:#ffc400;text-shadow:0 0 22px rgba(255,196,0,.35)}
+.sx-p2{margin:0 0 18px;font-size:.85rem;color:#9aa3b8}
+.sx-c .sx-p{margin-bottom:6px}
+.sx-b{display:block;padding:17px 14px;border-radius:14px;background:linear-gradient(180deg,#ffd633,#ff9d00);color:#000;font-weight:900;text-transform:uppercase;text-decoration:none;font-size:1rem;box-shadow:0 10px 26px rgba(255,170,0,.4)}
+.sx-n{margin-top:12px;border:0;background:none;color:#8d97b0;font:inherit;font-size:.85rem;text-decoration:underline;cursor:pointer}
+</style>
+<script>
+(function(){
+var bx=document.getElementById("sx");if(!bx)return;
+var K="sx_vista",shown=false,t0=Date.now(),maxY=0,lastY=window.scrollY,lastT=Date.now();
+try{if(sessionStorage.getItem(K))shown=true}catch(e){}
+function abrir(){if(shown)return;if(Date.now()-t0<8000)return;shown=true;try{sessionStorage.setItem(K,"1")}catch(e){}bx.hidden=false;}
+function fechar(){bx.hidden=true}
+document.getElementById("sx-x").onclick=fechar;document.getElementById("sx-n").onclick=fechar;
+bx.addEventListener("click",function(e){if(e.target===bx)fechar()});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")fechar()});
+document.getElementById("sx-b").addEventListener("click",fechar);
+/* computador: o mouse sai pelo topo da janela (indo para fechar a aba ou voltar) */
+document.addEventListener("mouseout",function(e){if(!e.relatedTarget&&e.clientY<=0)abrir()});
+/* celular: rolou boa parte da página e voltou rápido para cima */
+window.addEventListener("scroll",function(){
+ var y=window.scrollY,n=Date.now();if(y>maxY)maxY=y;
+ var v=(lastY-y)/Math.max(1,n-lastT);
+ if(maxY>1200&&y<maxY*0.6&&v>1.6)abrir();
+ lastY=y;lastT=n;
+},{passive:true});
+})();
+</script>
+
 </body>
 </html>
