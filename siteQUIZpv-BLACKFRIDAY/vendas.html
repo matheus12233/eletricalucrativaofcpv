@@ -618,7 +618,6 @@ tick();if(!done){iv=setInterval(tick,1000);document.addEventListener("visibility
 <img class="sx-logo" src="img/saida-logo.webp" width="300" height="108" alt="Elétrica Lucrativa" loading="lazy" decoding="async">
 <svg class="sx-al" viewBox="0 0 100 88" aria-hidden="true"><path d="M50 4 96 84H4z" fill="#ffd400" stroke="#111" stroke-width="6" stroke-linejoin="round"/><rect x="45" y="28" width="10" height="32" rx="4" fill="#111"/><circle cx="50" cy="71" r="6" fill="#111"/></svg>
 <h3 id="sx-t">ATENÇÃO! Não feche essa página ainda…</h3>
-<p class="sx-num" id="sx-num" hidden>Você foi a pessoa <u>Nº <span id="sx-nn"></span></u> a acessar o site HOJE!</p>
 <p class="sx-p">Preparei uma condição especial para você garantir o acesso ao <b>Guia Elétrica Lucrativa</b> com <b class="sx-g">R$ 20,00 de desconto</b> na compra!</p>
 <img class="sx-livro" src="img/saida-livro.webp" width="360" height="306" alt="Guia Elétrica Lucrativa" loading="lazy" decoding="async">
 <p class="sx-pill">Leia abaixo para entender:</p>
@@ -662,8 +661,7 @@ tick();if(!done){iv=setInterval(tick,1000);document.addEventListener("visibility
 var bx=document.getElementById("sx");if(!bx)return;
 var K="sx_vista",shown=false,t0=Date.now(),maxY=0,lastY=window.scrollY,lastT=Date.now();
 try{if(sessionStorage.getItem(K))shown=true}catch(e){}
-function abrir(){if(shown)return;if(Date.now()-t0<8000)return;shown=true;try{sessionStorage.setItem(K,"1")}catch(e){}bx.hidden=false;contar();}
-function contar(){try{fetch("/api/hoje",{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){var n=d&&d.n;if(n>0){document.getElementById("sx-nn").textContent=n.toLocaleString("pt-BR");document.getElementById("sx-num").hidden=false}}).catch(function(){})}catch(e){}}
+function abrir(){if(shown)return;if(Date.now()-t0<8000)return;shown=true;try{sessionStorage.setItem(K,"1")}catch(e){}bx.hidden=false;}
 function fechar(){bx.hidden=true}
 document.getElementById("sx-x").onclick=fechar;document.getElementById("sx-n").onclick=fechar;
 bx.addEventListener("click",function(e){if(e.target===bx)fechar()});
