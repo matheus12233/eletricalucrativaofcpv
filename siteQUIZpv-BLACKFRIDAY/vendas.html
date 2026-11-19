@@ -615,36 +615,55 @@ tick();if(!done){iv=setInterval(tick,1000);document.addEventListener("visibility
 <div id="sx" class="sx" role="dialog" aria-modal="true" aria-labelledby="sx-t" hidden>
 <div class="sx-c">
 <button type="button" class="sx-x" id="sx-x" aria-label="Fechar">×</button>
-<p class="sx-k">⚠️ Espere! Antes de sair…</p>
-<h3 id="sx-t">Fiz uma promoção especial para você!</h3>
-<p class="sx-p">O <b>Elétrica Lucrativa</b> por apenas</p>
+<img class="sx-logo" src="img/saida-logo.webp" width="300" height="108" alt="Elétrica Lucrativa" loading="lazy" decoding="async">
+<svg class="sx-al" viewBox="0 0 100 88" aria-hidden="true"><path d="M50 4 96 84H4z" fill="#ffd400" stroke="#111" stroke-width="6" stroke-linejoin="round"/><rect x="45" y="28" width="10" height="32" rx="4" fill="#111"/><circle cx="50" cy="71" r="6" fill="#111"/></svg>
+<h3 id="sx-t">ATENÇÃO! Não feche essa página ainda…</h3>
+<p class="sx-num" id="sx-num" hidden>Você foi a pessoa <u>Nº <span id="sx-nn"></span></u> a acessar o site HOJE!</p>
+<p class="sx-p">Preparei uma condição especial para você garantir o acesso ao <b>Guia Elétrica Lucrativa</b> com <b class="sx-g">R$ 20,00 de desconto</b> na compra!</p>
+<img class="sx-livro" src="img/saida-livro.webp" width="360" height="306" alt="Guia Elétrica Lucrativa" loading="lazy" decoding="async">
+<p class="sx-pill">Leia abaixo para entender:</p>
+<p class="sx-p">Não quero que o dinheiro seja um problema para você acabar com as frustrações na elétrica!</p>
+<p class="sx-de">De <s>R$ 47,90</s> por apenas</p>
 <p class="sx-pr">R$ 27,90</p>
-<p class="sx-p2">Guia completo + 10 bônus exclusivos · Garantia de 30 dias</p>
-<a class="sx-b" id="sx-b" href="https://checkout.payt.com.br/ed74d49c9665998bf1b65456ea6443a2?payment=pix" data-valor="27.90">Quero aproveitar por R$ 27,90</a>
+<a class="sx-b" id="sx-b" href="https://checkout.payt.com.br/ed74d49c9665998bf1b65456ea6443a2?payment=pix" data-valor="27.90">Quero meu desconto de R$ 20,00</a>
 <button type="button" class="sx-n" id="sx-n">Não, obrigado</button>
 </div>
 </div>
 <style>
-.sx{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.72);backdrop-filter:blur(3px)}
+.sx{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:14px;background:rgba(0,0,0,.75);backdrop-filter:blur(3px)}
 .sx[hidden]{display:none}
-.sx-c{position:relative;width:100%;max-width:400px;padding:30px 22px 20px;border-radius:20px;background:#0d0f16;border:2px solid #ffc400;box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 40px rgba(255,196,0,.18);text-align:center;color:#fff;animation:sxIn .3s ease-out}
+.sx-c{position:relative;width:100%;max-width:420px;max-height:96vh;overflow-y:auto;padding:16px 16px 12px;border-radius:18px;background:#fff;text-align:center;color:#141820;font-family:inherit;box-shadow:0 20px 60px rgba(0,0,0,.6);animation:sxIn .3s ease-out}
+.sx-c::before,.sx-c::after{content:"";position:absolute;top:0;width:70px;height:22px;background:repeating-linear-gradient(-45deg,#ffd400 0 12px,#111 12px 24px);pointer-events:none}
+.sx-c::before{left:0;border-top-left-radius:18px;transform-origin:left top}
+.sx-c::after{right:0;border-top-right-radius:18px;background:repeating-linear-gradient(45deg,#ffd400 0 12px,#111 12px 24px)}
 @keyframes sxIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
-.sx-x{position:absolute;top:8px;right:10px;width:36px;height:36px;border:0;background:none;color:#9aa3b8;font-size:1.7rem;line-height:1;cursor:pointer}
-.sx-k{margin:0 0 8px;color:#ffc400;font-weight:900;text-transform:uppercase;font-size:.85rem;letter-spacing:.03em}
-.sx-c h3{margin:0 0 12px;font-size:1.35rem;line-height:1.25;color:#fff}
-.sx-p{margin:0 0 18px;font-size:.98rem;line-height:1.5;color:#d6dcea}
-.sx-pr{margin:0 0 6px;font-size:2.9rem;font-weight:900;line-height:1;color:#ffc400;text-shadow:0 0 22px rgba(255,196,0,.35)}
-.sx-p2{margin:0 0 18px;font-size:.85rem;color:#9aa3b8}
-.sx-c .sx-p{margin-bottom:6px}
-.sx-b{display:block;padding:17px 14px;border-radius:14px;background:linear-gradient(180deg,#ffd633,#ff9d00);color:#000;font-weight:900;text-transform:uppercase;text-decoration:none;font-size:1rem;box-shadow:0 10px 26px rgba(255,170,0,.4)}
-.sx-n{margin-top:12px;border:0;background:none;color:#8d97b0;font:inherit;font-size:.85rem;text-decoration:underline;cursor:pointer}
+.sx-x{position:absolute;z-index:2;top:24px;right:6px;width:36px;height:36px;border:0;background:none;color:#7a8295;font-size:1.8rem;line-height:1;cursor:pointer}
+.sx-logo{display:block;width:150px;height:auto;margin:8px auto 2px}
+.sx-al{display:block;width:44px;height:auto;margin:2px auto 4px;filter:drop-shadow(0 4px 6px rgba(0,0,0,.18))}
+.sx-c h3{margin:0 0 6px;font-size:1.22rem;line-height:1.2;font-weight:900;color:#e10600}
+.sx-p{margin:0 0 8px;font-size:.93rem;line-height:1.35;font-weight:700;color:#141820}
+.sx-g{color:#16a316}
+.sx-num{margin:0 0 6px;font-size:1.02rem;font-weight:800;color:#141820}
+.sx-num[hidden]{display:none}
+.sx-livro{display:block;width:56%;max-width:210px;height:auto;margin:2px auto 8px}
+.sx-pill{display:inline-block;margin:0 0 8px;padding:5px 16px;border-radius:10px;background:#ffd400;color:#111;font-weight:900;font-size:1rem;box-shadow:0 4px 12px rgba(255,190,0,.35)}
+.sx-de{margin:6px 0 0;font-size:.95rem;color:#5b6578}
+.sx-de s{color:#e10600;text-decoration-color:#e10600}
+.sx-pr{margin:0 0 10px;font-size:2.4rem;font-weight:900;line-height:1.05;color:#16a316}
+.sx-b{display:block;padding:15px 12px;border-radius:14px;background:linear-gradient(180deg,#3ddc4a,#16a316);color:#fff;font-weight:900;text-transform:uppercase;text-decoration:none;font-size:1rem;text-shadow:0 1px 2px rgba(0,0,0,.3);box-shadow:0 10px 24px rgba(22,163,22,.4);animation:sxP 1.3s ease-in-out infinite}
+@keyframes sxP{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+@media(prefers-reduced-motion:reduce){.sx-b,.sx-c{animation:none}}
+.sx-n{margin-top:10px;border:0;background:none;color:#7a8295;font:inherit;font-size:.85rem;text-decoration:underline;cursor:pointer}
+@media(max-height:760px){.sx-c{padding:12px 14px 10px}.sx-logo{width:124px;margin:6px auto 0}.sx-al{width:34px;margin:0 auto 2px}.sx-c h3{font-size:1.08rem;margin-bottom:4px}.sx-num{font-size:.92rem;margin-bottom:4px}.sx-p{font-size:.84rem;line-height:1.3;margin-bottom:5px}.sx-livro{width:40%;max-width:150px;margin:0 auto 5px}.sx-pill{font-size:.88rem;padding:3px 12px;margin-bottom:5px}.sx-de{font-size:.85rem;margin-top:2px}.sx-pr{font-size:2rem;margin-bottom:6px}.sx-b{padding:13px 10px;font-size:.92rem}.sx-n{margin-top:6px}}
+@media(max-height:620px){.sx-al{display:none}.sx-livro{width:30%;max-width:115px}.sx-c::before,.sx-c::after{height:16px}.sx-x{top:16px}}
 </style>
 <script>
 (function(){
 var bx=document.getElementById("sx");if(!bx)return;
 var K="sx_vista",shown=false,t0=Date.now(),maxY=0,lastY=window.scrollY,lastT=Date.now();
 try{if(sessionStorage.getItem(K))shown=true}catch(e){}
-function abrir(){if(shown)return;if(Date.now()-t0<8000)return;shown=true;try{sessionStorage.setItem(K,"1")}catch(e){}bx.hidden=false;}
+function abrir(){if(shown)return;if(Date.now()-t0<8000)return;shown=true;try{sessionStorage.setItem(K,"1")}catch(e){}bx.hidden=false;contar();}
+function contar(){try{fetch("/api/hoje",{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){var n=d&&d.n;if(n>0){document.getElementById("sx-nn").textContent=n.toLocaleString("pt-BR");document.getElementById("sx-num").hidden=false}}).catch(function(){})}catch(e){}}
 function fechar(){bx.hidden=true}
 document.getElementById("sx-x").onclick=fechar;document.getElementById("sx-n").onclick=fechar;
 bx.addEventListener("click",function(e){if(e.target===bx)fechar()});
