@@ -662,7 +662,7 @@ tick();if(!done){iv=setInterval(tick,1000);document.addEventListener("visibility
 var bx=document.getElementById("sx");if(!bx)return;
 var K="sx_vista",shown=false,t0=Date.now(),maxY=0,lastY=window.scrollY,lastT=Date.now();
 try{if(sessionStorage.getItem(K))shown=true}catch(e){}
-function abrir(){if(shown)return;if(Date.now()-t0<8000)return;shown=true;try{sessionStorage.setItem(K,"1")}catch(e){}bx.hidden=false;}
+function abrir(){if(shown)return;if(Date.now()-t0<30000)return;shown=true;try{sessionStorage.setItem(K,"1")}catch(e){}bx.hidden=false;}
 function fechar(){bx.hidden=true}
 document.getElementById("sx-x").onclick=fechar;document.getElementById("sx-n").onclick=fechar;
 bx.addEventListener("click",function(e){if(e.target===bx)fechar()});
@@ -670,13 +670,8 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")fechar()});
 document.getElementById("sx-b").addEventListener("click",fechar);
 /* computador: o mouse sai pelo topo da janela (indo para fechar a aba ou voltar) */
 document.addEventListener("mouseout",function(e){if(!e.relatedTarget&&e.clientY<=0)abrir()});
-/* celular: rolou boa parte da página e voltou rápido para cima */
-window.addEventListener("scroll",function(){
- var y=window.scrollY,n=Date.now();if(y>maxY)maxY=y;
- var v=(lastY-y)/Math.max(1,n-lastT);
- if(maxY>1200&&y<maxY*0.6&&v>1.6)abrir();
- lastY=y;lastT=n;
-},{passive:true});
+/* celular: saiu da página (trocou de app ou de aba) e voltou */
+var saiu=false;document.addEventListener("visibilitychange",function(){if(document.visibilityState==="hidden"){if(Date.now()-t0>=30000)saiu=true}else if(saiu){saiu=false;setTimeout(abrir,400)}});
 })();
 </script>
 
