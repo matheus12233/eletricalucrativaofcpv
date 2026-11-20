@@ -339,6 +339,7 @@ summary::after{color:#b86e00}
 <h1>Aprenda elétrica residencial do zero e descubra como transformar essa profissão em uma renda de <span class="dest">R$ 8 mil a R$ 13 mil por mês!</span></h1>
 <p class="sub">Mesmo que você nunca tenha trabalhado como eletricista ou sequer saiba por onde começar!</p>
 <div class="fotoh"><img src="img/v/foto-instalando.webp" alt="Eletricista instalando uma tomada" width="1100" height="733" fetchpriority="high"></div>
+<a class="btn" href="#bonus">Ver meus bônus especiais</a>
 </div>
 </section>
 <div class="sep"></div>
@@ -550,7 +551,7 @@ var seen={};try{seen=JSON.parse(sessionStorage.getItem("qz_t")||"{}")}catch(e){}
 function t(e){
   if(seen[e])return;seen[e]=1;
   try{sessionStorage.setItem("qz_t",JSON.stringify(seen))}catch(x){}
-  var b=JSON.stringify({e:e,s:s});
+  var b=JSON.stringify({e:e,s:s,d:(/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Mac/.test(navigator.platform)))?"m":"c"});
   try{
     if(!(navigator.sendBeacon&&navigator.sendBeacon("/api/t",new Blob([b],{type:"application/json"})))){
       fetch("/api/t",{method:"POST",headers:{"Content-Type":"application/json"},body:b,keepalive:true});

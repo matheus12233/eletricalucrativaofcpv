@@ -65,6 +65,7 @@ tr:last-child td{border-bottom:0}
 <option value="90">Últimos 90 dias</option>
 </select>
 <select id="src" aria-label="Origem"><option value="all">Todas as origens</option></select>
+<select id="dev" aria-label="Dispositivo"><option value="all">Todos os dispositivos</option><option value="m">📱 Só celular</option><option value="c">💻 Só computador</option></select>
 <span class="sp"></span>
 <span id="hora" style="font-size:.82rem"></span>
 <button class="mini" id="atualizar">Atualizar</button>
@@ -121,7 +122,7 @@ function sair(){try{sessionStorage.removeItem("painel_senha")}catch(e){}clearInt
 function carregar(){
   var s=pass();
   if(!s){$("login").hidden=false;$("app").hidden=true;return}
-  var url="/api/stats?days="+$("dias").value+"&src="+encodeURIComponent($("src").value);
+  var url="/api/stats?days="+$("dias").value+"&src="+encodeURIComponent($("src").value)+"&dev="+$("dev").value;
   fetch(url,{headers:{"x-painel-senha":s},cache:"no-store"}).then(function(r){return r.json().then(function(j){return{st:r.status,j:j}})})
   .then(function(x){
     if(x.st===401){sair();$("erro").textContent="Senha incorreta.";$("login").hidden=false;return}
@@ -200,6 +201,7 @@ $("atualizar").addEventListener("click",carregar);
 $("sair").addEventListener("click",sair);
 $("dias").addEventListener("change",carregar);
 $("src").addEventListener("change",carregar);
+$("dev").addEventListener("change",carregar);
 if(pass())carregar();else $("login").hidden=false;
 </script>
 </body>
