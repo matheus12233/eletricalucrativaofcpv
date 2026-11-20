@@ -16,6 +16,7 @@ module.exports = async (req, res) => {
 
     const day = dayKey();
     const src = cleanSrc(body.s);
+    const dv = body.d === 'm' || body.d === 'c' ? body.d : null;
     const kAll = `q:${day}:all`;
     const cmds = [
       ['HINCRBY', kAll, e, 1],
@@ -24,6 +25,14 @@ module.exports = async (req, res) => {
     if (src !== 'all') {
       const kSrc = `q:${day}:s:${src}`;
       cmds.push(['HINCRBY', kSrc, e, 1], ['EXPIRE', kSrc, TTL], ['SADD', 'q:sources', src]);
+    }
+    if (dv) {
+      const kDv = `q:${day}:dv:${dv}`;
+      cmds.push(['HINCRBY', kDv, e, 1], ['EXPIRE', kDv, TTL]);
+      if (src !== 'all') {
+        const kSd = `q:${day}:s:${src}:dv:${dv}`;
+        cmds.push(['HINCRBY', kSd, e, 1], ['EXPIRE', kSd, TTL]);
+      }
     }
     await pipeline(cmds);
     return res.status(204).end();

@@ -20,11 +20,14 @@ module.exports = async (req, res) => {
     const q = req.query || {};
     const days = Math.min(Math.max(parseInt(q.days, 10) || 7, 1), 90);
     const src = q.src && q.src !== 'all' ? cleanSrc(q.src) : 'all';
+    const dv = q.dev === 'm' || q.dev === 'c' ? q.dev : 'all';
+    const base = (d) => (src === 'all' ? `q:${d}` : `q:${d}:s:${src}`);
+    const keyFor = (d) => (dv === 'all' ? (src === 'all' ? `q:${d}:all` : base(d)) : `${base(d)}:dv:${dv}`);
 
     const list = [];
     for (let k = 0; k < days; k++) list.push(dayKey(new Date(Date.now() - k * 86400000)));
 
-    const cmds = list.map((d) => ['HGETALL', src === 'all' ? `q:${d}:all` : `q:${d}:s:${src}`]);
+    const cmds = list.map((d) => ['HGETALL', keyFor(d)]);
     cmds.push(['SMEMBERS', 'q:sources']);
     const out = await pipeline(cmds);
 
