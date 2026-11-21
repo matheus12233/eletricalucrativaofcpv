@@ -551,7 +551,7 @@ var seen={};try{seen=JSON.parse(sessionStorage.getItem("qz_t")||"{}")}catch(e){}
 function t(e){
   if(seen[e])return;seen[e]=1;
   try{sessionStorage.setItem("qz_t",JSON.stringify(seen))}catch(x){}
-  var b=JSON.stringify({e:e,s:s,d:(/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Mac/.test(navigator.platform)))?"m":"c"});
+  var b=JSON.stringify({e:e,s:s,d:(/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Mac/.test(navigator.platform)))?"m":"c",v:(function(){try{return localStorage.getItem("qz_var")||""}catch(x){return ""}})()});
   try{
     if(!(navigator.sendBeacon&&navigator.sendBeacon("/api/t",new Blob([b],{type:"application/json"})))){
       fetch("/api/t",{method:"POST",headers:{"Content-Type":"application/json"},body:b,keepalive:true});

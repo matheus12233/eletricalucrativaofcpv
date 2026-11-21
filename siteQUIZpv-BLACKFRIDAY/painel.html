@@ -74,6 +74,9 @@ tr:last-child td{border-bottom:0}
 <div class="erro" id="erro2"></div>
 <div class="cards" id="cards"></div>
 <div id="dica"></div>
+<h2>Teste A/B da capa do quiz</h2>
+<p style="margin:-4px 0 10px;font-size:.86rem;color:#64748b">A = eletricista no quadro (atual) · B = SW4 de frente · C = SW4 de lado. Usa o período e o filtro de dispositivo escolhidos acima.</p>
+<div class="box"><table id="ab"></table></div>
 <h2>Funil, etapa por etapa</h2>
 <div class="box"><table id="funil"></table></div>
 <h2>O que as pessoas responderam</h2>
@@ -129,12 +132,21 @@ function carregar(){
     if(!x.j.ok){$("login").hidden=true;$("app").hidden=false;$("erro2").textContent=x.j.erro||"Erro ao carregar.";return}
     $("erro").textContent="";$("erro2").textContent="";
     $("login").hidden=true;$("app").hidden=false;
-    desenhar(x.j);
+    desenhar(x.j);abteste(s);
     $("hora").textContent="Atualizado às "+new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
     clearInterval(timer);timer=setInterval(carregar,60000);
   }).catch(function(){$("login").hidden=!!pass();$("erro2").textContent="Sem conexão. Tentando de novo em instantes."});
 }
 
+function abteste(s){
+  var vs=["a","b","c"],nm={a:"A · eletricista (atual)",b:"B · SW4 de frente",c:"C · SW4 de lado"};
+  Promise.all(vs.map(function(v){return fetch("/api/stats?days="+$("dias").value+"&dev="+$("dev").value+"&var="+v,{headers:{"x-painel-senha":s},cache:"no-store"}).then(function(r){return r.json()}).catch(function(){return{}})})).then(function(rs){
+    var h="<tr><th>Versão</th><th>Abriram</th><th>Começaram</th><th>Terminaram</th><th>Foram p/ vendas</th><th>Clicaram comprar</th></tr>",best=-1,bi=-1,L=[];
+    rs.forEach(function(j,k){var T={};(j.days||[]).forEach(function(r){for(var q in r.c)T[q]=(T[q]||0)+r.c[q]});var v=T.view||0,st=T.start||0,f=T[FIM]||0,sv=T.sales_view||0,bc=T.buy_click||0;L.push([v,st,f,sv,bc]);var tx=v>0?bc/v:0;if(v>=30&&tx>best){best=tx;bi=k}});
+    L.forEach(function(x,k){h+="<tr"+(k===bi?" style=\"background:#ecfdf5\"":"")+"><td><b>"+nm[vs[k]]+"</b>"+(k===bi?" 🏆":"")+"</td><td>"+n(x[0])+"</td><td>"+n(x[1])+" ("+pc(x[1],x[0])+")</td><td>"+n(x[2])+" ("+pc(x[2],x[0])+")</td><td>"+n(x[3])+" ("+pc(x[3],x[0])+")</td><td>"+n(x[4])+" ("+pc(x[4],x[0])+")</td></tr>"});
+    $("ab").innerHTML=h;
+  });
+}
 function desenhar(d){
   var sel=$("src"),atual=sel.value;
   if(sel.options.length-1!==d.sources.length){
