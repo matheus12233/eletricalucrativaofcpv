@@ -17,6 +17,7 @@ module.exports = async (req, res) => {
     const day = dayKey();
     const src = cleanSrc(body.s);
     const dv = body.d === 'm' || body.d === 'c' ? body.d : null;
+    const vr = body.v === 'a' || body.v === 'b' || body.v === 'c' ? body.v : null;
     const kAll = `q:${day}:all`;
     const cmds = [
       ['HINCRBY', kAll, e, 1],
@@ -32,6 +33,14 @@ module.exports = async (req, res) => {
       if (src !== 'all') {
         const kSd = `q:${day}:s:${src}:dv:${dv}`;
         cmds.push(['HINCRBY', kSd, e, 1], ['EXPIRE', kSd, TTL]);
+      }
+    }
+    if (vr) {
+      const kV = `q:${day}:v:${vr}`;
+      cmds.push(['HINCRBY', kV, e, 1], ['EXPIRE', kV, TTL]);
+      if (dv) {
+        const kVd = `q:${day}:v:${vr}:dv:${dv}`;
+        cmds.push(['HINCRBY', kVd, e, 1], ['EXPIRE', kVd, TTL]);
       }
     }
     await pipeline(cmds);

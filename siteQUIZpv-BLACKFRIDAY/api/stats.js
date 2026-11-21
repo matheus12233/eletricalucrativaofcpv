@@ -22,7 +22,8 @@ module.exports = async (req, res) => {
     const src = q.src && q.src !== 'all' ? cleanSrc(q.src) : 'all';
     const dv = q.dev === 'm' || q.dev === 'c' ? q.dev : 'all';
     const base = (d) => (src === 'all' ? `q:${d}` : `q:${d}:s:${src}`);
-    const keyFor = (d) => (dv === 'all' ? (src === 'all' ? `q:${d}:all` : base(d)) : `${base(d)}:dv:${dv}`);
+    const vr = q.var === 'a' || q.var === 'b' || q.var === 'c' ? q.var : null;
+    const keyFor = (d) => (vr ? `q:${d}:v:${vr}` + (dv === 'all' ? '' : `:dv:${dv}`) : dv === 'all' ? (src === 'all' ? `q:${d}:all` : base(d)) : `${base(d)}:dv:${dv}`);
 
     const list = [];
     for (let k = 0; k < days; k++) list.push(dayKey(new Date(Date.now() - k * 86400000)));
