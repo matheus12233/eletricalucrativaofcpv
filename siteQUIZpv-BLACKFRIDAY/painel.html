@@ -75,7 +75,7 @@ tr:last-child td{border-bottom:0}
 <div class="cards" id="cards"></div>
 <div id="dica"></div>
 <h2>Teste A/B da capa do quiz</h2>
-<p style="margin:-4px 0 10px;font-size:.86rem;color:#64748b">A = eletricista no quadro (atual) · C = falta de profissionais (2 eletricistas). Usa o período e o filtro de dispositivo escolhidos acima.</p>
+<p style="margin:-4px 0 10px;font-size:.86rem;color:#64748b">A = eletricista no quadro · B = sem experiência (2 eletricistas) · C = falta de profissionais (2 eletricistas). Usa o período e o filtro de dispositivo escolhidos acima.</p>
 <div class="box"><table id="ab"></table></div>
 <h2>Funil, etapa por etapa</h2>
 <div class="box"><table id="funil"></table></div>
@@ -139,7 +139,7 @@ function carregar(){
 }
 
 function abteste(s){
-  var vs=["a","c"],nm={a:"A · eletricista (atual)",c:"C · falta de profissionais"};
+  var vs=["a","b","c"],nm={a:"A · eletricista (atual)",b:"B · sem experiência",c:"C · falta de profissionais"};
   Promise.all(vs.map(function(v){return fetch("/api/stats?days="+$("dias").value+"&dev="+$("dev").value+"&var="+v,{headers:{"x-painel-senha":s},cache:"no-store"}).then(function(r){return r.json()}).catch(function(){return{}})})).then(function(rs){
     var h="<tr><th>Versão</th><th>Abriram</th><th>Começaram</th><th>Terminaram</th><th>Foram p/ vendas</th><th>Clicaram comprar</th></tr>",best=-1,bi=-1,L=[];
     rs.forEach(function(j,k){var T={};(j.days||[]).forEach(function(r){for(var q in r.c)T[q]=(T[q]||0)+r.c[q]});var v=T.view||0,st=T.start||0,f=T[FIM]||0,sv=T.sales_view||0,bc=T.buy_click||0;L.push([v,st,f,sv,bc]);var tx=v>0?bc/v:0;if(v>=30&&tx>best){best=tx;bi=k}});
