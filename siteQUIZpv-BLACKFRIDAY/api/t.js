@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
     const day = dayKey();
     const src = cleanSrc(body.s);
     const dv = body.d === 'm' || body.d === 'c' ? body.d : null;
-    const vr = body.v === 'a' || body.v === 'b' || body.v === 'c' ? body.v : null;
+    const vr = body.v === 'a' || body.v === 'b' || body.v === 'c' || body.v === 'd' ? body.v : null;
     const kAll = `q:${day}:all`;
     const cmds = [
       ['HINCRBY', kAll, e, 1],

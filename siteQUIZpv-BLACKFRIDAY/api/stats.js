@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
     const src = q.src && q.src !== 'all' ? cleanSrc(q.src) : 'all';
     const dv = q.dev === 'm' || q.dev === 'c' ? q.dev : 'all';
     const base = (d) => (src === 'all' ? `q:${d}` : `q:${d}:s:${src}`);
-    const vr = q.var === 'a' || q.var === 'b' || q.var === 'c' ? q.var : null;
+    const vr = q.var === 'a' || q.var === 'b' || q.var === 'c' || q.var === 'd' ? q.var : null;
     const keyFor = (d) => (vr ? `q:${d}:v:${vr}` + (dv === 'all' ? '' : `:dv:${dv}`) : dv === 'all' ? (src === 'all' ? `q:${d}:all` : base(d)) : `${base(d)}:dv:${dv}`);
 
     const list = [];
