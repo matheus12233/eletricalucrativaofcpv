@@ -342,17 +342,18 @@ function goBack(){
 }
 
 function destino(){var u=SALES_URL;return u.indexOf("?")>-1?u:u+location.search}
+function vtPre(){if(window.__vp)return;window.__vp=1;var l=document.createElement("link");l.rel="preload";l.as="script";l.href="https://scripts.converteai.net/0de03c80-fa1f-49fc-8506-9d2e76a5f4b4/ab-test/6b077872740ed70a317c2f7a/player.js";document.head.appendChild(l)}
 function vtLoad(){if(window.__vt)return;window.__vt=1;try{window._plt=window._plt||(performance&&performance.timeOrigin?performance.timeOrigin+performance.now():Date.now())}catch(e){}var s=document.createElement("script");s.src="https://scripts.converteai.net/0de03c80-fa1f-49fc-8506-9d2e76a5f4b4/ab-test/6b077872740ed70a317c2f7a/player.js";s.async=!0;document.head.appendChild(s)}
 function result(){
   sset("qz_done","1");try{localStorage.removeItem("qz_prog")}catch(e){}
   if(!fired){fired=true;track("fin");try{fbq("track","Lead")}catch(e){}}
   var L=LV[ans[0]===undefined?0:ans[0]],inc=ans[2]===undefined?null:INC[ans[2]];
-  vtLoad();
   var w=el("div","res");
   var vs=el("div","vsl");var h=el("h1","vsl-h","Seu diagnóstico está sendo preparado…");h.tabIndex=-1;vs.appendChild(h);
   var vp=el("div","vsl-p");vp.innerHTML='<vturb-smartplayer id="ab-6b077872740ed70a317c2f7a" style="display:block;margin:0 auto;width:100%"></vturb-smartplayer>';vs.appendChild(el("p","vsl-s","▶ Dê o play e assista até o final para ver o seu resultado."));vs.appendChild(vp);
   w.appendChild(vs);
   stage.appendChild(w);
+  vtLoad();
   return h;
 }
 
@@ -360,7 +361,7 @@ var PG=null;try{PG=JSON.parse(localStorage.getItem("qz_prog")||"null")}catch(e){
 if(PG&&!(PG.i>0&&PG.i<N&&Date.now()-PG.t<864e5&&Array.isArray(PG.a)))PG=null;
 if(PG){var cp=el("p","cont","Você parou na metade do teste. Toque no botão para continuar de onde parou.");var stk=document.querySelector("#s-intro .stk");stk.parentNode.insertBefore(cp,stk)}
 $("start").addEventListener("click",function(){
-  snd(1);track("start");vtLoad();
+  snd(1);track("start");vtPre();
   if(PG){i=PG.i;ans=PG.a;PG=null}else{i=0;ans=[]}
   dir="f";show("quiz");render();
 });
