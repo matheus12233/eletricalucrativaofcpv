@@ -101,7 +101,7 @@ h1{margin:10px 0 8px;font-size:1.5rem;line-height:1.17;font-weight:900;text-alig
 .res{text-align:center;animation:inf .5s ease both}
 .badge{display:inline-block;padding:6px 14px;border-radius:99px;background:rgba(255,196,0,.16);border:1px solid rgba(255,196,0,.5);color:var(--y);font-weight:800;font-size:.8rem}
 .res h1{margin:12px 0 8px;font-size:1.55rem}
-.rsub{margin:0 0 14px;font-weight:600;font-size:1rem;color:var(--tx);text-wrap:balance}
+.res>h2{margin:12px 0 8px;font-size:1.55rem}.vsl{margin:0 0 22px}.res .vsl-h{margin:4px 0 6px;font-size:1.02rem;line-height:1.25;font-weight:800;text-wrap:balance}.vsl-p{position:relative;width:100%;border-radius:12px;overflow:hidden;background:#000}.vsl-s{margin:0 0 12px;font-size:.95rem;font-weight:700;color:var(--tx);text-wrap:balance}.rsub{margin:0 0 14px;font-weight:600;font-size:1rem;color:var(--tx);text-wrap:balance}
 .you{margin:0 0 14px;padding:13px 15px;border-radius:14px;background:rgba(255,196,0,.1);border:1.5px solid rgba(255,196,0,.45);font-weight:600;font-size:.95rem;text-align:left}
 .box{margin:0 0 14px;padding:16px 14px;border-radius:16px;background:var(--card);border:1px solid var(--line);text-align:left}
 .box h2{margin:0 0 12px;font-size:.95rem;text-transform:uppercase;letter-spacing:.02em;color:#fff;text-align:center}
@@ -141,6 +141,7 @@ h1,.sub,.q,.load h2,.box h2,.steps li b,.exp-t b,.exp-t u,.cmp .l b,.pf b,.warn 
 <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
 <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];var L=function(){t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)};b.readyState==='complete'?L():f.addEventListener('load',L)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1509660471210296');fbq('track','PageView');</script>
 <style>@keyframes pls{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}@keyframes plsPro{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}.pulse{box-shadow:0 12px 30px rgba(34,197,94,.45)}.go-pro{box-shadow:0 12px 32px rgba(0,230,90,.65),0 0 0 5px rgba(61,255,122,.22)}.pulse,.go-pro{will-change:transform;backface-visibility:hidden}@keyframes halo{0%,100%{opacity:.2;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}.stk::before{content:"";position:absolute;left:18px;right:18px;top:14px;bottom:calc(12px + env(safe-area-inset-bottom,0px));border-radius:15px;box-shadow:0 0 0 4px rgba(61,255,122,.6),0 0 28px 8px rgba(61,255,122,.6);animation:halo 1.1s ease-in-out infinite;pointer-events:none;will-change:transform,opacity}#start{position:relative;z-index:1}@media(prefers-reduced-motion:reduce){.stk::before{animation:none}}</style>
+<link rel="dns-prefetch" href="https://scripts.converteai.net"><link rel="dns-prefetch" href="https://cdn.converteai.net">
 </head>
 <body>
 <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1509660471210296&ev=PageView&noscript=1"></noscript>
@@ -341,31 +342,16 @@ function goBack(){
 }
 
 function destino(){var u=SALES_URL;return u.indexOf("?")>-1?u:u+location.search}
+function vtLoad(){if(window.__vt)return;window.__vt=1;try{window._plt=window._plt||(performance&&performance.timeOrigin?performance.timeOrigin+performance.now():Date.now())}catch(e){}var s=document.createElement("script");s.src="https://scripts.converteai.net/0de03c80-fa1f-49fc-8506-9d2e76a5f4b4/ab-test/6b077872740ed70a317c2f7a/player.js";s.async=!0;document.head.appendChild(s)}
 function result(){
   sset("qz_done","1");try{localStorage.removeItem("qz_prog")}catch(e){}
   if(!fired){fired=true;track("fin");try{fbq("track","Lead")}catch(e){}}
   var L=LV[ans[0]===undefined?0:ans[0]],inc=ans[2]===undefined?null:INC[ans[2]];
+  vtLoad();
   var w=el("div","res");
-  w.appendChild(el("span","badge",L.b));
-  var h=el("h1",null,"Seu plano está pronto!");h.tabIndex=-1;w.appendChild(h);
-  w.appendChild(el("p","rsub","Montamos o seu caminho para aprender elétrica do zero e começar a cobrar pelos seus serviços."));
-  w.appendChild(el("div","you",L.y+(inc?" Hoje você tira "+inc+" por mês e o plano mostra como ir além disso, passo a passo.":"")));
-  var bx=el("div","box");bx.appendChild(el("h2",null,"Seu plano: Truque Elétrica Lucrativa"));
-  var ol=el("ol","steps");
-  ST.forEach(function(s,k){
-    var li=el("li",k===L.s?"here":"");
-    li.appendChild(el("span","n",String(k+1)));
-    var d=el("div");var b=el("b",null,s[0]);
-    if(k===L.s)b.appendChild(el("em",null,"Você começa aqui"));
-    d.appendChild(b);d.appendChild(document.createTextNode(s[1]));
-    li.appendChild(d);ol.appendChild(li);
-  });
-  bx.appendChild(ol);w.appendChild(bx);
-  var im=el("img","rimg");im.src="img/q4.webp";im.alt="Truque da Elétrica Lucrativa";im.width=488;im.height=507;w.appendChild(im);
-  var pf=el("div","pf");var pi=el("img");pi.src="img/expert.webp";pi.alt="Matheus Batista";pi.width=58;pi.height=58;pi.loading="lazy";pf.appendChild(pi);
-  var pt=el("div");pt.innerHTML="Criado pelo professor <b>Matheus Batista</b>, 13 anos no SENAI e <b>Professor do Ano</b>.";pf.appendChild(pt);w.appendChild(pf);
-  var a=el("a","btn pulse","Descobrir tudo sobre esse truque!");a.id="go";a.href=destino();a.addEventListener("click",function(){snd(1)});
-  w.appendChild(a);
+  var vs=el("div","vsl");var h=el("h1","vsl-h","Seu diagnóstico está sendo preparado…");h.tabIndex=-1;vs.appendChild(h);
+  var vp=el("div","vsl-p");vp.innerHTML='<vturb-smartplayer id="ab-6b077872740ed70a317c2f7a" style="display:block;margin:0 auto;width:100%"></vturb-smartplayer>';vs.appendChild(el("p","vsl-s","▶ Dê o play e assista até o final para ver o seu resultado."));vs.appendChild(vp);
+  w.appendChild(vs);
   stage.appendChild(w);
   return h;
 }
@@ -374,7 +360,7 @@ var PG=null;try{PG=JSON.parse(localStorage.getItem("qz_prog")||"null")}catch(e){
 if(PG&&!(PG.i>0&&PG.i<N&&Date.now()-PG.t<864e5&&Array.isArray(PG.a)))PG=null;
 if(PG){var cp=el("p","cont","Você parou na metade do teste. Toque no botão para continuar de onde parou.");var stk=document.querySelector("#s-intro .stk");stk.parentNode.insertBefore(cp,stk)}
 $("start").addEventListener("click",function(){
-  snd(1);track("start");
+  snd(1);track("start");vtLoad();
   if(PG){i=PG.i;ans=PG.a;PG=null}else{i=0;ans=[]}
   dir="f";show("quiz");render();
 });
